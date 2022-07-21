@@ -3,7 +3,7 @@ import logo from 'assets/images/logo.png';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
 
-const NavBar = styled.div`
+const HeaderWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.primary};
   padding: ${({ theme }) => theme.spacing.sm};
   border-radius: ${({ theme }) => theme.spacing.sm};
@@ -19,9 +19,9 @@ export default function Header() {
   return (
     <ThemeProvider theme={theme}>
       <header>
-        <NavBar>
+        <HeaderWrapper>
           <Logo src={logo} alt="PokéDex logo" />
-        </NavBar>
+        </HeaderWrapper>
       </header>
     </ThemeProvider>
   );
