@@ -2,6 +2,10 @@ const color = {
   primary: '#d32f2f',
   primaryLight: '#ff6659',
   primaryDark: '#9a0007',
+  text: {
+    onPrimary: '#ffffff',
+    onSecondary: '#000000',
+  },
 };
 
 const spacing = {
@@ -22,8 +26,17 @@ const size = {
   jumbo: '96px',
 };
 
+const font = {
+  weight: {
+    light: 300,
+    regular: 400,
+    bold: 700,
+  },
+};
+
 export default {
   color,
   spacing,
   size,
+  font,
 };

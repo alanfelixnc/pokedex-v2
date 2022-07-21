@@ -1,3 +1,4 @@
+import Footer from 'components/Footer';
 import Header from 'components/Header';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -9,5 +10,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Header />
+    <Footer />
   </React.StrictMode>
 );
