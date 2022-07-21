@@ -57,7 +57,7 @@
     "prettier": "^2.7.1"
   },
   "lint-staged": {
-    "./src/**/*.{ts,tsx,js,jsx,css}": [
+    "./src/**/*.{ts,tsx,js,jsx}": [
       "eslint --fix",
       "prettier --write --ignore-unknown"
     ]
