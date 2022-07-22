@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
 import { FiSearch } from 'react-icons/fi';
+import { SearchProvider } from 'context/SearchContext';
+import { useState } from 'react';
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -46,11 +48,31 @@ const Button = styled.button`
 `;
 
 export default function Search() {
+  const [searchContent, setSearchContent] = useState('');
+  const [search, setSearch] = useState('');
+
+  function onEnter(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Enter') setSearch(searchContent);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <SearchWrapper>
-        <Input name="search" placeholder="Search for a pokémon here" />
-        <Button>
+        <SearchProvider
+          value={{
+            search,
+            setSearch,
+          }}
+        >
+          <Input
+            name="search"
+            placeholder="Search for a pokémon here"
+            value={searchContent}
+            onChange={(event) => setSearchContent(event.target.value)}
+            onKeyPress={(event) => onEnter(event)}
+          />
+        </SearchProvider>
+        <Button onClick={() => setSearch(searchContent)}>
           <FiSearch />
         </Button>
       </SearchWrapper>
