@@ -41,6 +41,7 @@ const font = {
     bold: 700,
   },
   size: {
+    caption: '0.95rem',
     body1: '1.07rem',
     body2: '1.12rem',
     title1: '1.25rem',

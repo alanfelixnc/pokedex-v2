@@ -2,7 +2,6 @@ import React from 'react';
 import logo from 'assets/images/logo.png';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
-import Search from 'components/Search';
 
 const HeaderWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.primary};
@@ -23,7 +22,6 @@ export default function Header() {
         <HeaderWrapper>
           <Logo src={logo} alt="PokéDex logo" />
         </HeaderWrapper>
-        <Search />
       </header>
     </ThemeProvider>
   );

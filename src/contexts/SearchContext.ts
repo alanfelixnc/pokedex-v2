@@ -1,11 +1,5 @@
-import React, { SetStateAction } from 'react';
-
-type SearchType = string;
-
-type SearchContextProps = {
-  search: SearchType;
-  setSearch: React.Dispatch<SetStateAction<SearchType>>;
-};
+import React from 'react';
+import { SearchContextProps } from 'types/Search';
 
 const DEFAULT_VALUE: SearchContextProps = {
   search: '',
