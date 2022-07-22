@@ -2,7 +2,15 @@ const color = {
   primary: '#d32f2f',
   primaryLight: '#ff6659',
   primaryDark: '#9a0007',
+  secondary: '#eceff1',
+  secondaryLight: '#ffffff',
+  secondaryDark: '#babdbe',
+  accent: '#2196f3',
+  accentLight: '#6ec6ff',
+  accentDark: '#0069c0',
   text: {
+    bodyPrimary: '#616161',
+    bodySecondary: '#bdbdbd',
     onPrimary: '#ffffff',
     onSecondary: '#000000',
   },
@@ -31,6 +39,13 @@ const font = {
     light: 300,
     regular: 400,
     bold: 700,
+  },
+  size: {
+    body1: '1.07rem',
+    body2: '1.12rem',
+    title1: '1.25rem',
+    title2: '1.5rem',
+    title3: '1.75rem',
   },
 };
 
