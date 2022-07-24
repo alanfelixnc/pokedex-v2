@@ -5,8 +5,13 @@ const color = {
     dark: '#9a0007',
   },
   secondary: {
+    default: '#424242',
+    light: '#6d6d6d',
+    dark: '#1b1b1b',
+  },
+  gray: {
     default: '#eceff1',
-    light: '#ffffff',
+    light: '#f8f8f8',
     dark: '#babdbe',
   },
   accent: {

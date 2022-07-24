@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 
-export const TypeWrapper = styled.div`
+export const Wrapper = styled.div`
   margin: 0 8px;
 `;
 
-export const TypeTag = styled.span<{ color: string }>`
+export const Tag = styled.span<{ color: string; badge: boolean }>`
   color: ${({ theme }) => theme.color.text.onPrimary};
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.font.size.caption};
   font-weight: ${({ theme }) => theme.font.weight.regular};
   background-color: ${(props) => props.color};
-  padding: 4px;
+  padding: 4px 8px 4px 8px;
   border-radius: 4px;
+  margin: 0 8px;
+  white-space: nowrap;
 `;
 
-export const TypeBadge = styled.img`
+export const Badge = styled.img`
   height: 32px;
+`;
+
+export const TagBadge = styled(Badge)`
+  margin-right: 4px;
 `;

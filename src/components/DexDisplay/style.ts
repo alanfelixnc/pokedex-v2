@@ -3,12 +3,20 @@ import styled from 'styled-components';
 export const DexWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  grid-gap: 64px;
+  grid-gap: 24px;
   margin: 64px;
 `;
 
 export const PokemonCard = styled.div`
   text-align: center;
+  background-color: ${({ theme }) => theme.color.secondary.dark};
+  padding: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: ease-in 0.1s;
+  :hover {
+    background-color: ${({ theme }) => theme.color.secondary.default};
+  }
 `;
 
 export const Sprite = styled.img`

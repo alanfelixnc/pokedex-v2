@@ -23,7 +23,7 @@ export const Input = styled.input`
   }
 `;
 export const Button = styled.button`
-  background-color: ${({ theme }) => theme.color.secondary.light};
+  background-color: ${({ theme }) => theme.color.gray.light};
   color: ${({ theme }) => theme.color.text.body.default};
   font-size: ${({ theme }) => theme.font.size.title1};
   border-radius: 50%;
@@ -33,9 +33,9 @@ export const Button = styled.button`
   cursor: pointer;
   transition: ease-in 0.1s;
   :hover {
-    background-color: ${({ theme }) => theme.color.secondary.default};
+    background-color: ${({ theme }) => theme.color.gray.default};
   }
   :active {
-    background-color: ${({ theme }) => theme.color.secondary.dark};
+    background-color: ${({ theme }) => theme.color.gray.dark};
   }
 `;

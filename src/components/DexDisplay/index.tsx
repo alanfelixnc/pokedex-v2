@@ -11,7 +11,7 @@ import {
   Sprite,
   TypesWrapper,
 } from './style';
-import { Tag } from 'components/TypeTag';
+import Tag from 'components/TypeTag';
 
 type DexDisplayProps = {
   pokemonList: Pokemon[];
@@ -33,7 +33,9 @@ export default function DexDisplay({ pokemonList }: DexDisplayProps) {
             />
             <TypesWrapper>
               {pokemon.types.map((type) => (
-                <Tag key={type.slot} type={type.type.name} />
+                <Tag badge key={type.slot} type={type.type.name}>
+                  {type.type.name}
+                </Tag>
               ))}
             </TypesWrapper>
           </PokemonCard>
