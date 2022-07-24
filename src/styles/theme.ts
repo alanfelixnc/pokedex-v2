@@ -15,9 +15,9 @@ const color = {
     dark: '#babdbe',
   },
   accent: {
-    default: '#2196f3',
-    light: '#6ec6ff',
-    dark: '#0069c0',
+    default: '#ffeb3b',
+    light: '#ffff72',
+    dark: '#c8b900',
   },
   text: {
     body: {

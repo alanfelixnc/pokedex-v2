@@ -4,7 +4,7 @@ export const DexWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   grid-gap: 24px;
-  margin: 64px;
+  margin: 24px;
 `;
 
 export const PokemonCard = styled.div`
