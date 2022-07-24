@@ -5,6 +5,7 @@ import { SearchProvider } from 'contexts/SearchContext';
 import React, { useEffect, useState } from 'react';
 import { Pokemon } from 'pokenode-ts';
 import Pagination from 'components/Pagination';
+import Loading from 'components/Loading';
 
 const ITEMS_PER_PAGE = 30;
 
@@ -13,10 +14,12 @@ export default function Home() {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const totalPages = Math.ceil(totalResults / ITEMS_PER_PAGE);
 
   async function getPokemon(page: number) {
+    setLoading(true);
     const { results } = await PokemonClient.listPokemons(
       page,
       currentPage === totalPages
@@ -32,6 +35,7 @@ export default function Home() {
     const { count } = await PokemonClient.listPokemonSpecies(0, 0);
     setTotalResults(count);
     setPokemonList(pokemonSpeciesList);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -56,7 +60,8 @@ export default function Home() {
         currentPage={currentPage}
         totalPages={totalPages}
       />
-      <DexDisplay pokemonList={pokemonList} />
+      {loading && <Loading />}
+      {!loading && <DexDisplay pokemonList={pokemonList} />}
     </SearchProvider>
   );
 }
