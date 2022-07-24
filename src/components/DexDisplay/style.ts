@@ -29,6 +29,7 @@ export const Info = styled.span`
 export const Name = styled(Info)`
   font-size: ${({ theme }) => theme.font.size.title2};
   font-weight: ${({ theme }) => theme.font.weight.bold};
+  text-transform: capitalize;
 `;
 
 export const DexNumber = styled(Info)`
@@ -37,12 +38,8 @@ export const DexNumber = styled(Info)`
   margin-left: 8px;
 `;
 
-export const TypeWrapper = styled.div`
+export const TypesWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-`;
-
-export const Type = styled(Info)`
-  margin: 0 8px;
 `;
