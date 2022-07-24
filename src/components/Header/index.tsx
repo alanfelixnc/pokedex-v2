@@ -1,19 +1,8 @@
 import React from 'react';
 import logo from 'assets/images/logo.png';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
-
-const HeaderWrapper = styled.div`
-  background-color: ${({ theme }) => theme.color.primary.default};
-  padding: 16px;
-  border-radius: 16px;
-  margin: 24px;
-`;
-
-const Logo = styled.img`
-  height: 64px;
-  margin-left: 32px;
-`;
+import { HeaderWrapper, Logo } from './style';
 
 export default function Header() {
   return (

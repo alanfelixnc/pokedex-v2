@@ -1,17 +1,7 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
-
-const FooterWrapper = styled.div`
-  text-align: center;
-  margin: 32px;
-`;
-
-const Text = styled.span`
-  color: ${({ theme }) => theme.color.text.onPrimary};
-  font-weight: ${({ theme }) => theme.font.weight.bold};
-  font-size: 1.12rem;
-`;
+import { FooterWrapper, Text } from './style';
 
 export default function Footer() {
   return (
