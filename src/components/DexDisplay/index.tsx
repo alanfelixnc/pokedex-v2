@@ -10,8 +10,8 @@ type DexDisplayProps = {
 const DexWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  grid-gap: ${({ theme }) => theme.spacing.xxl};
-  margin: ${({ theme }) => theme.spacing.xxl};
+  grid-gap: 64px;
+  margin: 64px;
 `;
 
 const PokemonCard = styled.div`
@@ -19,7 +19,7 @@ const PokemonCard = styled.div`
 `;
 
 const Sprite = styled.img`
-  margin: ${({ theme }) => theme.spacing.sm};
+  margin: 16px;
 `;
 
 const InfoWrapper = styled.div`
@@ -41,7 +41,7 @@ const Name = styled(Info)`
 const DexNumber = styled(Info)`
   font-size: ${({ theme }) => theme.font.size.caption};
   font-weight: ${({ theme }) => theme.font.weight.light};
-  margin-left: ${({ theme }) => theme.spacing.xs};
+  margin-left: 8px;
 `;
 
 const TypeWrapper = styled.div`
@@ -51,7 +51,7 @@ const TypeWrapper = styled.div`
 `;
 
 const Type = styled(Info)`
-  margin: 0 ${({ theme }) => theme.spacing.xs};
+  margin: 0 8px;
 `;
 
 export default function DexDisplay({ pokemonList }: DexDisplayProps) {

@@ -4,15 +4,15 @@ import styled, { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
 
 const HeaderWrapper = styled.div`
-  background-color: ${({ theme }) => theme.color.primary};
-  padding: ${({ theme }) => theme.spacing.sm};
-  border-radius: ${({ theme }) => theme.spacing.sm};
-  margin: ${({ theme }) => theme.spacing.md};
+  background-color: ${({ theme }) => theme.color.primary.default};
+  padding: 16px;
+  border-radius: 16px;
+  margin: 24px;
 `;
 
 const Logo = styled.img`
-  height: ${({ theme }) => theme.size.medium};
-  margin-left: ${({ theme }) => theme.spacing.lg};
+  height: 64px;
+  margin-left: 32px;
 `;
 
 export default function Header() {

@@ -4,7 +4,7 @@ import theme from 'styles/theme';
 
 const FooterWrapper = styled.div`
   text-align: center;
-  margin: ${({ theme }) => theme.spacing.lg};
+  margin: 32px;
 `;
 
 const Text = styled.span`
