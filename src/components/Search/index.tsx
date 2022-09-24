@@ -12,8 +12,12 @@ type SearchProps = {
 export default function Search({ setSearch }: SearchProps) {
   const [searchContent, setSearchContent] = useState('');
 
+  function onSearch() {
+    setSearch(searchContent.trim());
+  }
+
   function onEnter(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === 'Enter') setSearch(searchContent);
+    if (event.key === 'Enter') onSearch();
   }
 
   return (
@@ -26,7 +30,7 @@ export default function Search({ setSearch }: SearchProps) {
           onChange={(event) => setSearchContent(event.target.value)}
           onKeyPress={(event) => onEnter(event)}
         />
-        <Button onClick={() => setSearch(searchContent)}>
+        <Button onClick={() => onSearch()}>
           <FiSearch />
         </Button>
       </SearchWrapper>
