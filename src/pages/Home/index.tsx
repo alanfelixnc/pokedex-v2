@@ -58,13 +58,11 @@ export default function Home() {
     setLoading(false);
   }
 
-  async function getPokemon(page: number) {
+  async function getPokemon(pagination: number) {
     setLoading(true);
     const { results } = await PokemonClient.listPokemons(
-      page,
-      currentPage === totalPages
-        ? totalResults % ITEMS_PER_PAGE
-        : ITEMS_PER_PAGE
+      pagination,
+      currentPage === totalPages ? undefined : ITEMS_PER_PAGE
     );
     const pokemonSpeciesList = await Promise.all(
       results.map((result) => {
