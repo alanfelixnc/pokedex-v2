@@ -5,3 +5,5 @@ const Client = new MainClient({
 });
 
 export const PokemonClient = Client.pokemon;
+
+export { default as getPokemons } from './getPokemons';

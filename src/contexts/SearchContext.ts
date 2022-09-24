@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchContextProps } from 'types/Search';
+import { SearchContextProps } from 'types';
 
 const DEFAULT_VALUE: SearchContextProps = {
   search: '',

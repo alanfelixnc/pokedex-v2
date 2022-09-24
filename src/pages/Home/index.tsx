@@ -1,4 +1,4 @@
-import { PokemonClient } from 'api';
+import { getPokemons } from 'api';
 import DexDisplay from 'components/DexDisplay';
 import Search from 'components/Search';
 import { SearchProvider } from 'contexts/SearchContext';
@@ -26,15 +26,12 @@ export default function Home() {
 
   async function findPokemon(pagination: number, search: string) {
     setLoading(true);
-    const pokemonList: Array<{ name: string }> = [];
+    const pokemonList: Pokemon[] = [];
     let reachedMax = false;
     let searchPage = 0;
     await (async () => {
       while (!reachedMax) {
-        const { results } = await PokemonClient.listPokemons(
-          searchPage * 100,
-          100
-        );
+        const { results } = await getPokemons(searchPage * 300, 300);
         pokemonList.push(...results);
         searchPage = searchPage + 1;
         if (results.length < 1) reachedMax = true;
@@ -47,32 +44,19 @@ export default function Home() {
       pagination,
       pagination + ITEMS_PER_PAGE
     );
-    const pokemonSpeciesList = await Promise.all(
-      currentPageResults.map((result) => {
-        const pokemon = PokemonClient.getPokemonByName(result.name);
-        return pokemon;
-      })
-    );
     setTotalResults(searchResults.length);
-    setPokemonList(pokemonSpeciesList);
+    setPokemonList(currentPageResults);
     setLoading(false);
   }
 
   async function getPokemon(pagination: number) {
     setLoading(true);
-    const { results } = await PokemonClient.listPokemons(
+    const { results, count } = await getPokemons(
       pagination,
       currentPage === totalPages ? undefined : ITEMS_PER_PAGE
     );
-    const pokemonSpeciesList = await Promise.all(
-      results.map((result) => {
-        const pokemon = PokemonClient.getPokemonByName(result.name);
-        return pokemon;
-      })
-    );
-    const { count } = await PokemonClient.listPokemonSpecies(0, 0);
     setTotalResults(count);
-    setPokemonList(pokemonSpeciesList);
+    setPokemonList(results);
     setLoading(false);
   }
 
