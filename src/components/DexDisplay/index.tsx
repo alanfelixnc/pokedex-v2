@@ -12,17 +12,41 @@ import {
   TypesWrapper,
 } from './style';
 import Tag from 'components/TypeTag';
+import FavoriteButton from 'components/FavoriteButton';
+import { FavoritesType } from 'types';
 
 type DexDisplayProps = {
   pokemonList: Pokemon[];
+  favoritedPokemon: FavoritesType;
+  setFavoritedPokemon: (favorites: FavoritesType) => void;
 };
 
-export default function DexDisplay({ pokemonList }: DexDisplayProps) {
+export default function DexDisplay({
+  pokemonList,
+  favoritedPokemon,
+  setFavoritedPokemon,
+}: DexDisplayProps) {
+  let updatedFavoritedPokemon: FavoritesType = [];
+  function toggleFavoritedPokemon(id: number) {
+    if (favoritedPokemon.includes(id)) {
+      updatedFavoritedPokemon = favoritedPokemon.filter(
+        (favoritedId) => favoritedId !== id
+      );
+    } else {
+      updatedFavoritedPokemon = [...favoritedPokemon, id];
+    }
+    setFavoritedPokemon(updatedFavoritedPokemon);
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <DexWrapper>
         {pokemonList.map((pokemon) => (
           <PokemonCard key={pokemon.id}>
+            <FavoriteButton
+              active={favoritedPokemon.includes(pokemon.id)}
+              onClick={() => toggleFavoritedPokemon(pokemon.id)}
+            />
             <InfoWrapper>
               <Name>{pokemon.species.name}</Name>
               <DexNumber>{`#${pokemon.id}`}</DexNumber>

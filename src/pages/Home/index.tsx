@@ -1,20 +1,26 @@
 import { getPokemons } from 'api';
 import DexDisplay from 'components/DexDisplay';
 import Search from 'components/Search';
-import { SearchProvider } from 'contexts/SearchContext';
 import React, { useEffect, useState } from 'react';
 import { Pokemon } from 'pokenode-ts';
 import Pagination from 'components/Pagination';
 import Loading from 'components/Loading';
+import { FavoritesProvider, SearchProvider } from 'contexts';
+import { FavoritesType, SearchType } from 'types';
+
+type FavoriteStorageType = {
+  favorites: FavoritesType;
+};
 
 const ITEMS_PER_PAGE = 30;
 
 export default function Home() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState<SearchType>('');
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState<FavoritesType>([]);
 
   const totalPages = Math.ceil(totalResults / ITEMS_PER_PAGE);
 
@@ -60,8 +66,21 @@ export default function Home() {
     setLoading(false);
   }
 
+  function updateFavoritedPokemon(favoritedPokemon: FavoritesType) {
+    const favoriteStorage: FavoriteStorageType = {
+      favorites: favoritedPokemon,
+    };
+    localStorage.setItem('favoritedPokemon', JSON.stringify(favoriteStorage));
+    setFavorites(favoritedPokemon);
+  }
+
   useEffect(() => {
     getPokemon(0);
+    const favoritedPokemon = localStorage.getItem('favoritedPokemon');
+    if (favoritedPokemon) {
+      const favoritesId: FavoriteStorageType = JSON.parse(favoritedPokemon);
+      setFavorites(favoritesId.favorites);
+    }
   }, []);
 
   useEffect(() => {
@@ -80,15 +99,28 @@ export default function Home() {
         setSearch,
       }}
     >
-      <Search setSearch={setSearch} />
-      <Pagination
-        onNext={() => setCurrentPage(currentPage + 1)}
-        onPrevious={() => setCurrentPage(currentPage - 1)}
-        currentPage={currentPage}
-        totalPages={totalPages}
-      />
-      {loading && <Loading />}
-      {!loading && <DexDisplay pokemonList={pokemonList} />}
+      <FavoritesProvider
+        value={{
+          favorites,
+          setFavorites,
+        }}
+      >
+        <Search setSearch={setSearch} />
+        <Pagination
+          onNext={() => setCurrentPage(currentPage + 1)}
+          onPrevious={() => setCurrentPage(currentPage - 1)}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+        {loading && <Loading />}
+        {!loading && (
+          <DexDisplay
+            pokemonList={pokemonList}
+            favoritedPokemon={favorites}
+            setFavoritedPokemon={updateFavoritedPokemon}
+          />
+        )}
+      </FavoritesProvider>
     </SearchProvider>
   );
 }

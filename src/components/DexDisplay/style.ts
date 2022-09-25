@@ -12,6 +12,7 @@ export const DexWrapper = styled.div`
 `;
 
 export const PokemonCard = styled.div`
+  position: relative;
   text-align: center;
   background-color: ${({ theme }) => theme.color.secondary.dark};
   padding: 16px;
