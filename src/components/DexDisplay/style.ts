@@ -21,6 +21,8 @@ export const PokemonCard = styled.div`
 
 export const Sprite = styled.img`
   margin: 16px;
+  width: 200px;
+  height: 200px;
 `;
 
 export const InfoWrapper = styled.div`

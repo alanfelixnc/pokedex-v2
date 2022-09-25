@@ -29,7 +29,10 @@ export default function DexDisplay({ pokemonList }: DexDisplayProps) {
             </InfoWrapper>
             <Sprite
               alt={pokemon.species.name}
-              src={pokemon.sprites.front_default || undefined}
+              src={
+                pokemon.sprites.other['official-artwork'].front_default ||
+                undefined
+              }
             />
             <TypesWrapper>
               {pokemon.types.map((type) => (
