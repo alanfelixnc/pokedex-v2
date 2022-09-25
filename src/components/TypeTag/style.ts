@@ -14,14 +14,6 @@ export const Tag = styled.span<{ color: string; badge: boolean }>`
   border-radius: 4px;
   margin: 0 8px;
   white-space: nowrap;
-
-  @media only screen and (max-width: 768px) {
-    padding: 0;
-    background-color: transparent;
-    > span {
-      display: none;
-    }
-  }
 `;
 
 export const Badge = styled.img`
