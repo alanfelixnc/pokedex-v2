@@ -5,6 +5,10 @@ export const DexWrapper = styled.div`
   grid-template-columns: auto auto auto auto auto;
   grid-gap: 24px;
   margin: 24px;
+
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: auto;
+  }
 `;
 
 export const PokemonCard = styled.div`
@@ -16,6 +20,11 @@ export const PokemonCard = styled.div`
   transition: ease-in 0.1s;
   :hover {
     background-color: ${({ theme }) => theme.color.secondary.default};
+  }
+
+  @media only screen and (max-width: 768px) {
+    background-color: ${({ theme }) => theme.color.secondary.default};
+    border-radius: 32px;
   }
 `;
 

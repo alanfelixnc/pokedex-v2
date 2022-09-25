@@ -10,6 +10,11 @@ export const SearchWrapper = styled.div`
   border-radius: 32px;
   padding: 8px;
   margin: 0 auto;
+
+  @media only screen and (max-width: 768px) {
+    width: 95%;
+    min-width: unset;
+  }
 `;
 export const Input = styled.input`
   border: none;
@@ -20,6 +25,11 @@ export const Input = styled.input`
   color: ${({ theme }) => theme.color.text.body.default};
   ::placeholder {
     color: ${({ theme }) => theme.color.text.body.light};
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    min-width: unset;
   }
 `;
 export const Button = styled.button`

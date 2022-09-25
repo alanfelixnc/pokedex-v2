@@ -64,7 +64,7 @@ export default function TypeTag({
       {children && (
         <Tag badge={badge} color={getBackgroundColor(type)}>
           {badge && <TagBadge alt={type} src={getIconPath(type)} />}
-          {children}
+          <span>{children}</span>
         </Tag>
       )}
       {!children && <Badge alt={type} src={getIconPath(type)} />}

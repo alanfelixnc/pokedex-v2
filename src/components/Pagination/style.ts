@@ -6,6 +6,12 @@ export const PaginationWrapper = styled.div`
   justify-content: end;
   align-items: center;
   margin: 24px 24px 64px 24px;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+    margin: 16px auto;
+  }
 `;
 
 export const Button = styled.button`
