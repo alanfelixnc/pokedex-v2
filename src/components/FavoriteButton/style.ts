@@ -20,10 +20,10 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   transition: ease-in 0.1s;
   :hover {
-    background-color: ${({ theme }) => theme.color.primary.light};
-    color: ${({ theme }) => theme.color.primary.dark};
+    background-color: ${({ theme }) => theme.color.accent.default};
+    color: ${({ theme }) => theme.color.primary.default};
   }
   :active {
-    background-color: ${({ theme }) => theme.color.primary.default};
+    background-color: ${({ theme }) => theme.color.accent.dark};
   }
 `;
