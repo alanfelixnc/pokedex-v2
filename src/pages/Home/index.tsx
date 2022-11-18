@@ -1,12 +1,12 @@
 import { getPokemons } from 'api';
 import DexDisplay from 'components/DexDisplay';
 import Search from 'components/Search';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Pokemon } from 'pokenode-ts';
 import Pagination from 'components/Pagination';
 import Loading from 'components/Loading';
-import { FavoritesProvider, SearchProvider } from 'contexts';
-import { FavoritesType, SearchType } from 'types';
+import { FavoritesContext, SearchContext } from 'contexts';
+import { FavoritesType } from 'types';
 
 type FavoriteStorageType = {
   favorites: FavoritesType;
@@ -15,12 +15,13 @@ type FavoriteStorageType = {
 const ITEMS_PER_PAGE = 30;
 
 export default function Home() {
-  const [search, setSearch] = useState<SearchType>('');
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [favorites, setFavorites] = useState<FavoritesType>([]);
+  const { favorites, setFavorites, showFavorites } =
+    useContext(FavoritesContext);
+  const { search, setSearch } = useContext(SearchContext);
 
   const totalPages = Math.ceil(totalResults / ITEMS_PER_PAGE);
 
@@ -92,35 +93,27 @@ export default function Home() {
     else setCurrentPage(1);
   }, [search]);
 
+  useEffect(() => {
+    console.log('mudou:', showFavorites);
+  }, [showFavorites]);
+
   return (
-    <SearchProvider
-      value={{
-        search,
-        setSearch,
-      }}
-    >
-      <FavoritesProvider
-        value={{
-          favorites,
-          setFavorites,
-        }}
-      >
-        <Search setSearch={setSearch} />
-        <Pagination
-          onNext={() => setCurrentPage(currentPage + 1)}
-          onPrevious={() => setCurrentPage(currentPage - 1)}
-          currentPage={currentPage}
-          totalPages={totalPages}
+    <>
+      <Search setSearch={setSearch} />
+      <Pagination
+        onNext={() => setCurrentPage(currentPage + 1)}
+        onPrevious={() => setCurrentPage(currentPage - 1)}
+        currentPage={currentPage}
+        totalPages={totalPages}
+      />
+      {loading && <Loading />}
+      {!loading && (
+        <DexDisplay
+          pokemonList={pokemonList}
+          favoritedPokemon={favorites}
+          setFavoritedPokemon={updateFavoritedPokemon}
         />
-        {loading && <Loading />}
-        {!loading && (
-          <DexDisplay
-            pokemonList={pokemonList}
-            favoritedPokemon={favorites}
-            setFavoritedPokemon={updateFavoritedPokemon}
-          />
-        )}
-      </FavoritesProvider>
-    </SearchProvider>
+      )}
+    </>
   );
 }
