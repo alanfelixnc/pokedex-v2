@@ -5,6 +5,10 @@ export const HeaderWrapper = styled.div`
   padding: 16px;
   border-radius: 16px;
   margin: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
 
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -18,8 +22,27 @@ export const HeaderWrapper = styled.div`
 export const Logo = styled.img`
   height: 64px;
   margin-left: 32px;
+`;
+
+export const NavButton = styled.button`
+  font-size: ${({ theme }) => theme.font.size.title1};
+  background-color: ${({ theme }) => theme.color.primary.light};
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  color: ${({ theme }) => theme.color.text.onPrimary};
+  transition: 0.1s ease-in;
+  padding: 4px 8px;
+  :hover {
+    background-color: ${({ theme }) => theme.color.accent.default};
+    color: ${({ theme }) => theme.color.text.onSecondary};
+  }
+  :active {
+    background-color: ${({ theme }) => theme.color.accent.dark};
+  }
 
   @media only screen and (max-width: 768px) {
-    margin: 0 auto;
+    background-color: ${({ theme }) => theme.color.accent.default};
+    color: ${({ theme }) => theme.color.text.onSecondary};
   }
 `;
