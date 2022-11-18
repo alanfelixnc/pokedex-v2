@@ -1,4 +1,4 @@
-import { getPokemons } from 'api';
+import { getPokemonById, getPokemons } from 'api';
 import DexDisplay from 'components/DexDisplay';
 import Search from 'components/Search';
 import React, { useContext, useEffect, useState } from 'react';
@@ -13,6 +13,15 @@ type FavoriteStorageType = {
 };
 
 const ITEMS_PER_PAGE = 30;
+
+function paginateResults(results: Pokemon[], pagination: number): Pokemon[] {
+  if (results.length < 1) return results;
+  const currentPageResults = results.slice(
+    pagination,
+    pagination + ITEMS_PER_PAGE
+  );
+  return currentPageResults;
+}
 
 export default function Home() {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
@@ -32,6 +41,7 @@ export default function Home() {
   }
 
   async function findPokemon(pagination: number, search: string) {
+    if (showFavorites) return getFavoritePokemon(pagination, search);
     setLoading(true);
     const pokemonList: Pokemon[] = [];
     let reachedMax = false;
@@ -47,16 +57,32 @@ export default function Home() {
     const searchResults = pokemonList.filter((pokemon) =>
       pokemon.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
     );
-    const currentPageResults = searchResults.slice(
-      pagination,
-      pagination + ITEMS_PER_PAGE
-    );
+    const currentPageResults = paginateResults(searchResults, pagination);
     setTotalResults(searchResults.length);
     setPokemonList(currentPageResults);
     setLoading(false);
   }
 
+  async function getFavoritePokemon(pagination: number, search?: string) {
+    setLoading(true);
+    let pokemonList: Pokemon[] = [];
+    for (const favorite of favorites) {
+      const pokemon = await getPokemonById(favorite);
+      pokemonList.push(pokemon);
+    }
+    if (search) {
+      pokemonList = pokemonList.filter((pokemon) =>
+        pokemon.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      );
+    }
+    const currentPageResults = paginateResults(pokemonList, pagination);
+    setTotalResults(pokemonList.length);
+    setPokemonList(currentPageResults);
+    setLoading(false);
+  }
+
   async function getPokemon(pagination: number) {
+    if (showFavorites) return getFavoritePokemon(pagination);
     setLoading(true);
     const { results, count } = await getPokemons(
       pagination,
@@ -91,11 +117,7 @@ export default function Home() {
   useEffect(() => {
     if (currentPage === 1) findOrGetPokemon();
     else setCurrentPage(1);
-  }, [search]);
-
-  useEffect(() => {
-    console.log('mudou:', showFavorites);
-  }, [showFavorites]);
+  }, [search, showFavorites]);
 
   return (
     <>
