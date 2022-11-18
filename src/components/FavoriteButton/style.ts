@@ -9,9 +9,9 @@ export const Button = styled.button<ButtonProps>`
   right: 0;
   margin: 0 16px;
   background-color: ${({ active, theme }) =>
-    active ? theme.color.primary.light : 'transparent'};
+    active ? theme.color.primary.default : 'transparent'};
   color: ${({ active, theme }) =>
-    active ? theme.color.primary.dark : theme.color.primary.light};
+    active ? theme.color.text.onPrimary : theme.color.primary.light};
   font-size: ${({ theme }) => theme.font.size.title1};
   border-radius: 50%;
   width: 36px;
@@ -20,10 +20,10 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   transition: ease-in 0.1s;
   :hover {
-    background-color: ${({ theme }) => theme.color.accent.default};
-    color: ${({ theme }) => theme.color.primary.default};
+    background-color: ${({ theme }) => theme.color.primary.light};
+    color: ${({ theme }) => theme.color.text.onPrimary};
   }
   :active {
-    background-color: ${({ theme }) => theme.color.accent.dark};
+    background-color: ${({ theme }) => theme.color.primary.dark};
   }
 `;

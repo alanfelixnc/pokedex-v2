@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiHeart } from 'react-icons/fi';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { Button } from './style';
 
 type FavoriteButtonProps = {
@@ -13,7 +13,7 @@ export default function FavoriteButton({
 }: FavoriteButtonProps) {
   return (
     <Button active={active} onClick={onClick}>
-      <FiHeart />
+      {active ? <AiFillHeart /> : <AiOutlineHeart />}
     </Button>
   );
 }
