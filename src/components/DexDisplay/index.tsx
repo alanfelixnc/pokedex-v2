@@ -33,7 +33,11 @@ export default function DexDisplay({
         (favoritedId) => favoritedId !== id
       );
     } else {
-      updatedFavoritedPokemon = [...favoritedPokemon, id];
+      updatedFavoritedPokemon = [
+        ...favoritedPokemon.filter((fav_id) => fav_id < id),
+        id,
+        ...favoritedPokemon.filter((fav_id) => fav_id > id),
+      ];
     }
     setFavoritedPokemon(updatedFavoritedPokemon);
   }
