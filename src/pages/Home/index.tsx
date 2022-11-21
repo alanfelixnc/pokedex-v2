@@ -201,7 +201,11 @@ export default function Home() {
 
   return (
     <>
-      <Search setSearch={setSearch} />
+      <Search
+        setSearch={setSearch}
+        showBackButton={Boolean(pokemon)}
+        onGoBack={selectPokemon}
+      />
       {!pokemon && (
         <Pagination
           onNext={() => setCurrentPage(currentPage + 1)}

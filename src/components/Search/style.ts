@@ -3,17 +3,25 @@ import styled from 'styled-components';
 export const SearchWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 0 16px;
+`;
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
   background-color: white;
   width: 25%;
   min-width: 400px;
   border-radius: 32px;
   padding: 8px;
-  margin: 0 auto;
 
   @media only screen and (max-width: 768px) {
-    width: 95%;
+    width: 90%;
     min-width: unset;
+    padding-left: 24px;
   }
 `;
 export const Input = styled.input`
@@ -47,5 +55,17 @@ export const Button = styled.button`
   }
   :active {
     background-color: ${({ theme }) => theme.color.gray.dark};
+  }
+`;
+
+export const BackButton = styled(Button)`
+  width: 48px;
+  height: 48px;
+  background-color: ${({ theme }) => theme.color.accent.default};
+  :hover {
+    background-color: ${({ theme }) => theme.color.accent.light};
+  }
+  :active {
+    background-color: ${({ theme }) => theme.color.accent.dark};
   }
 `;

@@ -1,13 +1,25 @@
 import React from 'react';
-import { FiSearch } from 'react-icons/fi';
+import { FiArrowLeft, FiSearch } from 'react-icons/fi';
 import { useState } from 'react';
-import { SearchWrapper, Input, Button } from './style';
+import {
+  SearchWrapper,
+  Input,
+  Button,
+  BackButton,
+  InputWrapper,
+} from './style';
 
 type SearchProps = {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  showBackButton: boolean;
+  onGoBack(): void;
 };
 
-export default function Search({ setSearch }: SearchProps) {
+export default function Search({
+  setSearch,
+  showBackButton,
+  onGoBack,
+}: SearchProps) {
   const [searchContent, setSearchContent] = useState('');
 
   function onSearch() {
@@ -20,16 +32,23 @@ export default function Search({ setSearch }: SearchProps) {
 
   return (
     <SearchWrapper>
-      <Input
-        name="search"
-        placeholder="Search for a pokémon here"
-        value={searchContent}
-        onChange={(event) => setSearchContent(event.target.value)}
-        onKeyPress={(event) => onEnter(event)}
-      />
-      <Button onClick={() => onSearch()}>
-        <FiSearch />
-      </Button>
+      {showBackButton && (
+        <BackButton onClick={() => onGoBack()}>
+          <FiArrowLeft />
+        </BackButton>
+      )}
+      <InputWrapper>
+        <Input
+          name="search"
+          placeholder="Search for a pokémon here"
+          value={searchContent}
+          onChange={(event) => setSearchContent(event.target.value)}
+          onKeyPress={(event) => onEnter(event)}
+        />
+        <Button onClick={() => onSearch()}>
+          <FiSearch />
+        </Button>
+      </InputWrapper>
     </SearchWrapper>
   );
 }
