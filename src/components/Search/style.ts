@@ -19,7 +19,7 @@ export const InputWrapper = styled.div`
   padding: 8px;
 
   @media only screen and (max-width: 768px) {
-    width: 90%;
+    width: 80%;
     min-width: unset;
     padding-left: 24px;
   }

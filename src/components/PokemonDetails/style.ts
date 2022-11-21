@@ -55,6 +55,10 @@ export const TypesWrapper = styled.div`
 export const Artwork = styled.img`
   width: 400px;
   margin: 24px;
+
+  @media only screen and (max-width: 768px) {
+    width: 60%;
+  }
 `;
 
 export const Title = styled.span`
@@ -123,4 +127,5 @@ export const VarietyImage = styled.img`
 
 export const VarietyName = styled(Dimension)`
   margin-top: 12px;
+  text-align: center;
 `;
