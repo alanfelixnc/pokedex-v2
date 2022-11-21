@@ -5,6 +5,8 @@ import Routes from 'routes';
 import { FavoritesProvider, SearchProvider } from 'contexts';
 import { useState } from 'react';
 import { FavoritesType, SearchType } from 'types';
+import { ThemeProvider } from 'styled-components';
+import theme from 'styles/theme';
 
 function App() {
   const [search, setSearch] = useState<SearchType>('');
@@ -26,9 +28,11 @@ function App() {
           setShowFavorites,
         }}
       >
-        <Header />
-        <Routes />
-        <Footer />
+        <ThemeProvider theme={theme}>
+          <Header />
+          <Routes />
+          <Footer />
+        </ThemeProvider>
       </FavoritesProvider>
     </SearchProvider>
   );
