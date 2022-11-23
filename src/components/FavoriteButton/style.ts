@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import styled from 'styled-components';
 
 type ButtonProps = {
@@ -17,6 +18,7 @@ export const Button = styled.button<ButtonProps>`
   width: 36px;
   height: 36px;
   border: none;
+  border-style: none;
   cursor: pointer;
   transition: ease-in 0.1s;
   :hover {
@@ -25,5 +27,12 @@ export const Button = styled.button<ButtonProps>`
   }
   :active {
     background-color: ${({ theme }) => theme.color.primary.dark};
+  }
+
+  @media only screen and (max-width: 768px) {
+    color: ${({ active, theme }) =>
+      active ? theme.color.text.onPrimary : theme.color.text.onSecondary};
+    background-color: ${({ active, theme }) =>
+      active ? theme.color.primary.default : theme.color.gray.dark};
   }
 `;
