@@ -12,7 +12,13 @@ export default function FavoriteButton({
   onClick,
 }: FavoriteButtonProps) {
   return (
-    <Button active={active} onClick={onClick}>
+    <Button
+      active={active}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+    >
       {active ? <AiFillHeart /> : <AiOutlineHeart />}
     </Button>
   );
