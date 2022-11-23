@@ -16,32 +16,16 @@ import { FavoritesType } from 'types';
 type DexDisplayProps = {
   pokemonList: Pokemon[];
   favoritedPokemon: FavoritesType;
-  setFavoritedPokemon: (favorites: FavoritesType) => void;
+  toggleFavoritedPokemon: (id: number) => void;
   selectPokemon: (id?: number) => void;
 };
 
 export default function DexDisplay({
   pokemonList,
   favoritedPokemon,
-  setFavoritedPokemon,
+  toggleFavoritedPokemon,
   selectPokemon,
 }: DexDisplayProps) {
-  let updatedFavoritedPokemon: FavoritesType = [];
-  function toggleFavoritedPokemon(id: number) {
-    if (favoritedPokemon.includes(id)) {
-      updatedFavoritedPokemon = favoritedPokemon.filter(
-        (favoritedId) => favoritedId !== id
-      );
-    } else {
-      updatedFavoritedPokemon = [
-        ...favoritedPokemon.filter((fav_id) => fav_id < id),
-        id,
-        ...favoritedPokemon.filter((fav_id) => fav_id > id),
-      ];
-    }
-    setFavoritedPokemon(updatedFavoritedPokemon);
-  }
-
   return (
     <DexWrapper>
       {pokemonList.map((pokemon) => (

@@ -1,3 +1,4 @@
+import FavoriteButton from 'components/FavoriteButton';
 import GenderRatio from 'components/GenderRatio';
 import TypeTag from 'components/TypeTag';
 import React from 'react';
@@ -25,14 +26,24 @@ import {
 
 type PokemonDetailsProps = {
   pokemon: PokemonDetailsType | undefined;
+  favorited: boolean;
+  toggleFavorited(id: number): void;
 };
 
-export default function PokemonDetails({ pokemon }: PokemonDetailsProps) {
+export default function PokemonDetails({
+  pokemon,
+  favorited,
+  toggleFavorited,
+}: PokemonDetailsProps) {
   return (
     <DetailsWrapper>
       {pokemon && (
         <>
           <SectionWrapper>
+            <FavoriteButton
+              active={favorited}
+              onClick={() => toggleFavorited(pokemon.id)}
+            />
             <NameWrapper>
               <Name>{pokemon.name}</Name>
               <DexNumber>{`#${pokemon.id}`}</DexNumber>

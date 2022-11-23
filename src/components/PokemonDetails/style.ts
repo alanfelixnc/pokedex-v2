@@ -19,6 +19,7 @@ export const DetailsWrapper = styled.div`
 `;
 
 export const SectionWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

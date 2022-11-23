@@ -49,6 +49,20 @@ export default function Home() {
 
   const totalPages = Math.ceil(totalResults / ITEMS_PER_PAGE);
 
+  function toggleFavoritedPokemon(id: number) {
+    let updatedFavorites: FavoritesType = [];
+    if (favorites.includes(id)) {
+      updatedFavorites = favorites.filter((favoriteId) => favoriteId !== id);
+    } else {
+      updatedFavorites = [
+        ...favorites.filter((favoriteId) => favoriteId < id),
+        id,
+        ...favorites.filter((favoriteId) => favoriteId > id),
+      ];
+    }
+    updateFavoritedPokemon(updatedFavorites);
+  }
+
   async function getPokemonDetails(id: number) {
     setLoading(true);
     const pokemonDetails: PokemonDetailsType = EMPTY_POKEMON_DETAILS;
@@ -219,11 +233,17 @@ export default function Home() {
         <DexDisplay
           pokemonList={pokemonList}
           favoritedPokemon={favorites}
-          setFavoritedPokemon={updateFavoritedPokemon}
+          toggleFavoritedPokemon={toggleFavoritedPokemon}
           selectPokemon={selectPokemon}
         />
       )}
-      {!loading && pokemon && <PokemonDetails pokemon={pokemon} />}
+      {!loading && pokemon && (
+        <PokemonDetails
+          favorited={favorites.includes(pokemon.id)}
+          pokemon={pokemon}
+          toggleFavorited={toggleFavoritedPokemon}
+        />
+      )}
     </>
   );
 }
